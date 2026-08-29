@@ -5,7 +5,8 @@ CFLAGS		= -Wall -Wextra -Werror -pthread
 INCLUDES	= -I include
 
 SRCS		= src/main.c \
-			  src/parse.c
+			  src/parse.c \
+			  src/time.c
 OBJS		= $(SRCS:.c=.o)
 
 all: $(NAME)

@@ -20,5 +20,6 @@ typedef struct s_config
 }	t_config;
 
 int	parse_arguments(int argc, char **argv, t_config *config);
+long long	get_time_ms(void);
 
 #endif

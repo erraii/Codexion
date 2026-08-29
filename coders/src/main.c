@@ -10,5 +10,6 @@ int	main(int argc, char **argv)
 		fprintf(stderr, "Error: invalid arguments\n");
 		return (1);
 	}
+    printf("%lld\n", get_time_ms());
 	return (0);
 }
