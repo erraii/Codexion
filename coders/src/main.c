@@ -1,7 +1,14 @@
 #include "codexion.h"
+#include <stdio.h>
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	printf("Codexion\n");
+	t_config	config;
+
+	if (parse_arguments(argc, argv, &config))
+	{
+		fprintf(stderr, "Error: invalid arguments\n");
+		return (1);
+	}
 	return (0);
 }
