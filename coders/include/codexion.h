@@ -1,6 +1,10 @@
 #ifndef CODEXION_H
 # define CODEXION_H
 
+# include <pthread.h>
+
+typedef struct s_simulation	t_simulation;
+
 typedef enum e_scheduler
 {
 	POLICY_FIFO,
@@ -19,7 +23,47 @@ typedef struct s_config
 	t_scheduler	scheduler;
 }	t_config;
 
+typedef struct s_dongle
+{
+	int				id;
+	int				owner_id;
+	long long		cooldown_until;
+	pthread_mutex_t	mutex;
+}	t_dongle;
+
+typedef struct s_coder
+{
+	int				id;
+	int				left_dongle;
+	int				right_dongle;
+	int				compiles_done;
+	long long		last_compile_start;
+	pthread_t		thread;
+	t_simulation	*simulation;
+}	t_coder;
+
+struct s_simulation
+{
+	t_config		config;
+	t_coder			*coders;
+	t_dongle		*dongles;
+	long long		start_time;
+	int				started;
+	int				stopped;
+	unsigned long	request_sequence;
+	pthread_t		monitor_thread;
+	pthread_mutex_t	state_mutex;
+	pthread_mutex_t	log_mutex;
+	pthread_mutex_t	wait_mutex;
+	pthread_cond_t	wait_condition;
+};
+
+
 int	parse_arguments(int argc, char **argv, t_config *config);
 long long	get_time_ms(void);
+int		init_sync(t_simulation *simulation);
+void	destroy_sync(t_simulation *simulation);
+int		init_simulation(t_simulation *simulation, t_config *config);
+void	destroy_simulation(t_simulation *simulation);
 
 #endif
