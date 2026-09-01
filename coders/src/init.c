@@ -11,6 +11,7 @@ static void	init_dongles(t_simulation *simulation)
 		simulation->dongles[i].id = i;
 		simulation->dongles[i].owner_id = 0;
 		simulation->dongles[i].cooldown_until = 0;
+		simulation->dongles[i].queue.size = 0;
 		i++;
 	}
 }

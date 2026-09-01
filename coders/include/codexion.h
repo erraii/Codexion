@@ -1,6 +1,8 @@
 #ifndef CODEXION_H
 # define CODEXION_H
 
+# define DONGLE_QUEUE_CAPACITY 2
+
 # include <pthread.h>
 
 typedef struct s_simulation	t_simulation;
@@ -23,11 +25,25 @@ typedef struct s_config
 	t_scheduler	scheduler;
 }	t_config;
 
+typedef struct s_request
+{
+	int				coder_id;
+	unsigned long	sequence;
+	long long		deadline;
+}	t_request;
+
+typedef struct s_heap
+{
+	t_request	items[DONGLE_QUEUE_CAPACITY];
+	int			size;
+}	t_heap;
+
 typedef struct s_dongle
 {
 	int				id;
 	int				owner_id;
 	long long		cooldown_until;
+	t_heap			queue;
 	pthread_mutex_t	mutex;
 }	t_dongle;
 
