@@ -40,3 +40,20 @@ int	heap_push(t_heap *heap, t_request request, t_scheduler scheduler)
 	}
 	return (0);
 }
+
+t_request	*heap_peek(t_heap *heap)
+{
+	if (heap->size == 0)
+		return (NULL);
+	return (&heap->items[0]);
+}
+
+int	heap_pop(t_heap *heap)
+{
+	if (heap->size == 0)
+		return (1);
+	heap->size--;
+	if (heap->size > 0)
+		heap->items[0] = heap->items[heap->size];
+	return (0);
+}

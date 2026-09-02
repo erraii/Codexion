@@ -84,5 +84,7 @@ void	destroy_simulation(t_simulation *simulation);
 int	request_has_priority(const t_request *first,
 		const t_request *second, t_scheduler scheduler);
 int	heap_push(t_heap *heap, t_request request, t_scheduler scheduler);
+t_request	*heap_peek(t_heap *heap);
+int			heap_pop(t_heap *heap);
 
 #endif
