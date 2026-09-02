@@ -8,7 +8,8 @@ SRCS		= src/main.c \
 			  src/parse.c \
 			  src/time.c \
 			  src/init.c \
-			  src/sync.c
+			  src/sync.c \
+			  src/heap.c
 OBJS		= $(SRCS:.c=.o)
 
 all: $(NAME)

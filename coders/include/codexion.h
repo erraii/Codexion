@@ -81,5 +81,7 @@ int		init_sync(t_simulation *simulation);
 void	destroy_sync(t_simulation *simulation);
 int		init_simulation(t_simulation *simulation, t_config *config);
 void	destroy_simulation(t_simulation *simulation);
+int	request_has_priority(const t_request *first,
+		const t_request *second, t_scheduler scheduler);
 
 #endif
