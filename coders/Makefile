@@ -10,7 +10,8 @@ SRCS		= src/main.c \
 			  src/init.c \
 			  src/sync.c \
 			  src/heap.c \
-			  src/request.c
+			  src/request.c \
+			  src/acquire.c
 OBJS		= $(SRCS:.c=.o)
 
 all: $(NAME)

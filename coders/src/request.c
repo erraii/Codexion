@@ -1,6 +1,6 @@
 #include "codexion.h"
 
-static void	lock_dongles(t_dongle *left, t_dongle *right)
+void	lock_dongles(t_dongle *left, t_dongle *right)
 {
 	if (left == right)
 		pthread_mutex_lock(&left->mutex);
@@ -16,7 +16,7 @@ static void	lock_dongles(t_dongle *left, t_dongle *right)
 	}
 }
 
-static void	unlock_dongles(t_dongle *left, t_dongle *right)
+void	unlock_dongles(t_dongle *left, t_dongle *right)
 {
 	if (left == right)
 		pthread_mutex_unlock(&left->mutex);
