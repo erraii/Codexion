@@ -86,5 +86,7 @@ int	request_has_priority(const t_request *first,
 int	heap_push(t_heap *heap, t_request request, t_scheduler scheduler);
 t_request	*heap_peek(t_heap *heap);
 int			heap_pop(t_heap *heap);
+void	create_request(t_coder *coder, t_request *request);
+int		enqueue_request(t_coder *coder, t_request request);
 
 #endif
