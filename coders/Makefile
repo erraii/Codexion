@@ -13,7 +13,8 @@ SRCS		= src/main.c \
 			  src/request.c \
 			  src/acquire.c \
 			  src/state.c \
-			  src/wait.c
+			  src/wait.c \
+			  src/release.c
 OBJS		= $(SRCS:.c=.o)
 
 all: $(NAME)

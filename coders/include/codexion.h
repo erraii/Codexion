@@ -97,5 +97,6 @@ int		simulation_is_stopped(t_simulation *simulation);
 void	stop_simulation(t_simulation *simulation);
 int		try_acquire_dongles_locked(t_coder *coder,
 			t_request request, long long *cooldown);
+void	release_dongles(t_coder *coder);
 
 #endif
