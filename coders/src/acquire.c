@@ -1,4 +1,3 @@
-#include <time.h>
 #include "codexion.h"
 
 int	request_is_top(t_heap *heap, t_request request)
@@ -56,7 +55,7 @@ static long long	get_cooldown_deadline(t_dongle *left,
 	return (deadline);
 }
 
-static int	try_acquire_locked(t_coder *coder, t_request request,
+int	try_acquire_dongles_locked(t_coder *coder, t_request request,
 		long long *cooldown)
 {
 	t_simulation	*simulation;
@@ -80,30 +79,4 @@ static int	try_acquire_locked(t_coder *coder, t_request request,
 		*cooldown = get_cooldown_deadline(left, right, request);
 	unlock_dongles(left, right);
 	return (acquired);
-}
-
-int	wait_for_dongles(t_coder *coder, t_request request)
-{
-	t_simulation		*simulation;
-	struct timespec	timeout;
-	long long			cooldown;
-
-	simulation = coder->simulation;
-	pthread_mutex_lock(&simulation->wait_mutex);
-	cooldown = 0;
-	while (!try_acquire_locked(coder, request, &cooldown))
-	{
-		if (cooldown > get_time_ms())
-		{
-			timeout.tv_sec = cooldown / 1000;
-			timeout.tv_nsec = (cooldown % 1000) * 1000000;
-			pthread_cond_timedwait(&simulation->wait_condition,
-				&simulation->wait_mutex, &timeout);
-		}
-		else if (cooldown == 0)
-			pthread_cond_wait(&simulation->wait_condition,
-				&simulation->wait_mutex);
-	}
-	pthread_mutex_unlock(&simulation->wait_mutex);
-	return (0);
 }

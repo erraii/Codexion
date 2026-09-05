@@ -93,5 +93,9 @@ void	unlock_dongles(t_dongle *left, t_dongle *right);
 int	request_is_top(t_heap *heap, t_request request);
 int	request_can_acquire(t_coder *coder, t_request request);
 int	wait_for_dongles(t_coder *coder, t_request request);
+int		simulation_is_stopped(t_simulation *simulation);
+void	stop_simulation(t_simulation *simulation);
+int		try_acquire_dongles_locked(t_coder *coder,
+			t_request request, long long *cooldown);
 
 #endif
