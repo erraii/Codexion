@@ -104,5 +104,6 @@ int		try_acquire_dongles_locked(t_coder *coder,
 			t_request request, long long *cooldown);
 void	release_dongles(t_coder *coder);
 void	log_state(t_coder *coder, const char *message);
+int	sleep_ms(t_simulation *simulation, int duration);
 
 #endif
