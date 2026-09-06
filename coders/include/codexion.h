@@ -2,6 +2,11 @@
 # define CODEXION_H
 
 # define DONGLE_QUEUE_CAPACITY 2
+#define MSG_DONGLE "has taken a dongle"
+#define MSG_COMPILE "is compiling"
+#define MSG_DEBUG "is debugging"
+#define MSG_REFACTOR "is refactoring"
+#define MSG_BURNOUT "burned out"
 
 # include <pthread.h>
 
@@ -98,5 +103,6 @@ void	stop_simulation(t_simulation *simulation);
 int		try_acquire_dongles_locked(t_coder *coder,
 			t_request request, long long *cooldown);
 void	release_dongles(t_coder *coder);
+void	log_state(t_coder *coder, const char *message);
 
 #endif
