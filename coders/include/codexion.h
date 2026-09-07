@@ -110,5 +110,6 @@ int		wait_for_start(t_simulation *simulation);
 void	begin_simulation(t_simulation *simulation);
 int		create_coder_threads(t_simulation *simulation);
 void	join_coder_threads(t_simulation *simulation);
+void	*monitor_routine(void *argument);
 
 #endif

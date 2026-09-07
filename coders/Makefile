@@ -18,7 +18,8 @@ SRCS		= src/main.c \
 			  src/log.c \
 			  src/sleep.c \
 			  src/routine.c \
-			  src/threads.c
+			  src/threads.c \
+			  src/monitor.c
 OBJS		= $(SRCS:.c=.o)
 
 all: $(NAME)
