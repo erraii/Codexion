@@ -70,3 +70,20 @@ void	join_coder_threads(t_simulation *simulation)
 		i++;
 	}
 }
+
+int	run_simulation(t_simulation *simulation)
+{
+	if (create_coder_threads(simulation) != 0)
+		return (1);
+	if (pthread_create(&simulation->monitor_thread, NULL,
+			monitor_routine, simulation) != 0)
+	{
+		stop_simulation(simulation);
+		join_coder_threads(simulation);
+		return (1);
+	}
+	begin_simulation(simulation);
+	pthread_join(simulation->monitor_thread, NULL);
+	join_coder_threads(simulation);
+	return (0);
+}
