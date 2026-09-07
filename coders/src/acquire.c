@@ -55,6 +55,29 @@ static long long	get_cooldown_deadline(t_dongle *left,
 	return (deadline);
 }
 
+static int	claim_dongles(t_coder *coder, t_request request,
+		t_dongle *left, t_dongle *right)
+{
+	t_simulation	*simulation;
+	long long		now;
+
+	simulation = coder->simulation;
+	pthread_mutex_lock(&simulation->state_mutex);
+	now = get_time_ms();
+	if (simulation->stopped || now >= request.deadline)
+	{
+		pthread_mutex_unlock(&simulation->state_mutex);
+		return (0);
+	}
+	left->owner_id = coder->id;
+	right->owner_id = coder->id;
+	heap_pop(&left->queue);
+	heap_pop(&right->queue);
+	coder->last_compile_start = now;
+	pthread_mutex_unlock(&simulation->state_mutex);
+	return (1);
+}
+
 int	try_acquire_dongles_locked(t_coder *coder, t_request request,
 		long long *cooldown)
 {
@@ -69,13 +92,8 @@ int	try_acquire_dongles_locked(t_coder *coder, t_request request,
 	lock_dongles(left, right);
 	acquired = request_can_acquire(coder, request);
 	if (acquired)
-	{
-		left->owner_id = coder->id;
-		right->owner_id = coder->id;
-		heap_pop(&left->queue);
-		heap_pop(&right->queue);
-	}
-	else
+		acquired = claim_dongles(coder, request, left, right);
+	if (!acquired)
 		*cooldown = get_cooldown_deadline(left, right, request);
 	unlock_dongles(left, right);
 	return (acquired);

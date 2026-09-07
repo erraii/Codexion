@@ -105,5 +105,6 @@ int		try_acquire_dongles_locked(t_coder *coder,
 void	release_dongles(t_coder *coder);
 void	log_state(t_coder *coder, const char *message);
 int	sleep_ms(t_simulation *simulation, int duration);
+void	*coder_routine(void *argument);
 
 #endif
