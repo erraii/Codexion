@@ -1,2 +1,4 @@
 *.o
 codexion
+coders/cooldown.log
+coders/edf.log
