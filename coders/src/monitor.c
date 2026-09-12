@@ -16,11 +16,13 @@ static t_coder	*inspect_coders(t_simulation *simulation, int *all_done)
 	{
 		if (simulation->coders[i].compiles_done
 			< simulation->config.number_of_compiles_required)
+		{
 			*all_done = 0;
-		if (burned == NULL && now
-			- simulation->coders[i].last_compile_start
-			>= simulation->config.time_to_burnout)
-			burned = &simulation->coders[i];
+			if (burned == NULL && now
+				- simulation->coders[i].last_compile_start
+				>= simulation->config.time_to_burnout)
+				burned = &simulation->coders[i];
+		}
 		i++;
 	}
 	return (burned);

@@ -19,3 +19,16 @@ void	stop_simulation(t_simulation *simulation)
 	pthread_cond_broadcast(&simulation->wait_condition);
 	pthread_mutex_unlock(&simulation->wait_mutex);
 }
+
+int	coder_has_finished(t_coder *coder)
+{
+	t_simulation	*simulation;
+	int				finished;
+
+	simulation = coder->simulation;
+	pthread_mutex_lock(&simulation->state_mutex);
+	finished = coder->compiles_done
+		>= simulation->config.number_of_compiles_required;
+	pthread_mutex_unlock(&simulation->state_mutex);
+	return (finished);
+}

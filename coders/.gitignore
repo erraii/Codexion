@@ -1,4 +1,4 @@
 *.o
 codexion
-coders/cooldown.log
-coders/edf.log
+heap_test
+*.log

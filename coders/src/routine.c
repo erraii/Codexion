@@ -53,9 +53,12 @@ void	*coder_routine(void *argument)
 	coder = (t_coder *)argument;
 	if (wait_for_start(coder->simulation))
 		return (NULL);
-	while (!simulation_is_stopped(coder->simulation))
+	while (!simulation_is_stopped(coder->simulation)
+		&& !coder_has_finished(coder))
 	{
 		if (compile_code(coder) != 0)
+			break ;
+		if (coder_has_finished(coder))
 			break ;
 		if (debug_and_refactor(coder) != 0)
 			break ;
