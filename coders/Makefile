@@ -16,7 +16,6 @@ SRCS		= src/main.c \
 			  src/wait.c \
 			  src/release.c \
 			  src/log.c \
-			  src/sleep.c \
 			  src/routine.c \
 			  src/threads.c \
 			  src/monitor.c
