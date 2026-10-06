@@ -2,7 +2,7 @@ NAME		= codexion
 
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror -pthread
-INCLUDES	= -I include
+CPPFLAGS	= -D_DEFAULT_SOURCE -Iinclude
 
 SRCS		= src/main.c \
 			  src/parse.c \
@@ -25,7 +25,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 %.o: %.c include/codexion.h
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
