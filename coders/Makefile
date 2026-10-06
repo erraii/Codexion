@@ -13,8 +13,7 @@ SRCS		= src/main.c \
 			  src/request.c \
 			  src/acquire.c \
 			  src/state.c \
-			  src/wait.c \
-			  src/release.c \
+			  src/dongle.c \
 			  src/routine.c \
 			  src/threads.c \
 			  src/monitor.c
