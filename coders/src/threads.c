@@ -6,7 +6,7 @@
 /*   By: ecakiray <ecakiray@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/06 11:27:37 by ecakiray          #+#    #+#             */
-/*   Updated: 2026/10/06 14:37:57 by ecakiray         ###   ########.fr       */
+/*   Updated: 2026/10/06 15:34:02 by ecakiray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	wait_for_start(t_simulation *simulation)
 	return (stopped);
 }
 
-void	begin_simulation(t_simulation *simulation)
+static void	begin_simulation(t_simulation *simulation)
 {
 	int	i;
 
@@ -48,7 +48,7 @@ void	begin_simulation(t_simulation *simulation)
 	pthread_mutex_unlock(&simulation->wait_mutex);
 }
 
-int	create_coder_threads(t_simulation *simulation)
+static int	create_coder_threads(t_simulation *simulation)
 {
 	int	i;
 
@@ -71,7 +71,7 @@ int	create_coder_threads(t_simulation *simulation)
 	return (0);
 }
 
-void	join_coder_threads(t_simulation *simulation)
+static void	join_coder_threads(t_simulation *simulation)
 {
 	int	i;
 

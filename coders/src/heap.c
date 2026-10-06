@@ -6,7 +6,7 @@
 /*   By: ecakiray <ecakiray@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/06 11:26:58 by ecakiray          #+#    #+#             */
-/*   Updated: 2026/10/06 11:26:59 by ecakiray         ###   ########.fr       */
+/*   Updated: 2026/10/06 15:28:16 by ecakiray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	swap_requests(t_request *first, t_request *second)
 	*second = temporary;
 }
 
-int	request_has_priority(const t_request *first,
+static int	request_has_priority(const t_request *first,
 		const t_request *second, t_scheduler scheduler)
 {
 	if (scheduler == POLICY_FIFO)

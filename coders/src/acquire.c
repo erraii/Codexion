@@ -6,13 +6,13 @@
 /*   By: ecakiray <ecakiray@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/06 11:26:53 by ecakiray          #+#    #+#             */
-/*   Updated: 2026/10/06 14:35:53 by ecakiray         ###   ########.fr       */
+/*   Updated: 2026/10/06 15:32:06 by ecakiray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-int	request_is_top(t_heap *heap, t_request request)
+static int	request_is_top(t_heap *heap, t_request request)
 {
 	t_request	*top;
 
@@ -26,7 +26,7 @@ int	request_is_top(t_heap *heap, t_request request)
 	return (1);
 }
 
-int	request_can_acquire(t_coder *coder, t_request request)
+static int	request_can_acquire(t_coder *coder, t_request request)
 {
 	t_simulation	*simulation;
 	t_dongle		*left;
