@@ -56,12 +56,12 @@ make re
 
 The following resources were used during development:
 
-- The Codexion subject and evaluation sheet.
+- The Codexion subject.
+- Previously evaluated Philosophers projects, which were useful as initial references for thread organization, mutex protection, monitoring, timing, and resource cleanup.
 - POSIX manual pages for `pthread_create`, `pthread_join`, mutexes, and condition variables.
 - Manual pages for `gettimeofday` and `usleep`.
 - 42 Norminette documentation.
 - Documentation and examples of binary heap implementations.
-- Previously evaluated Philosophers projects, which were useful as initial references for thread organization, mutex protection, monitoring, timing, and resource cleanup.
 
 The previously evaluated Philosophers projects were used to understand common multithreading patterns. Codexion-specific features, including FIFO/EDF scheduling, request heaps, dongle cooldown, and dual-queue arbitration, were developed specifically for this project.
 
