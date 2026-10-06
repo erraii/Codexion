@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   heap.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ecakiray <ecakiray@student.42heilbronn.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/10/06 11:26:58 by ecakiray          #+#    #+#             */
+/*   Updated: 2026/10/06 15:59:54 by ecakiray         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "codexion.h"
 
 static void	swap_requests(t_request *first, t_request *second)
@@ -9,7 +21,7 @@ static void	swap_requests(t_request *first, t_request *second)
 	*second = temporary;
 }
 
-int	request_has_priority(const t_request *first,
+static int	request_has_priority(const t_request *first,
 		const t_request *second, t_scheduler scheduler)
 {
 	if (scheduler == POLICY_FIFO)

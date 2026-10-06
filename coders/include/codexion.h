@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   codexion.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ecakiray <ecakiray@student.42heilbronn.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/10/06 11:26:21 by ecakiray          #+#    #+#             */
+/*   Updated: 2026/10/06 15:34:21 by ecakiray         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CODEXION_H
 # define CODEXION_H
 
 # define DONGLE_QUEUE_CAPACITY 2
-#define MSG_DONGLE "has taken a dongle"
-#define MSG_COMPILE "is compiling"
-#define MSG_DEBUG "is debugging"
-#define MSG_REFACTOR "is refactoring"
-#define MSG_BURNOUT "burned out"
+# define MSG_DONGLE "has taken a dongle"
+# define MSG_COMPILE "is compiling"
+# define MSG_DEBUG "is debugging"
+# define MSG_REFACTOR "is refactoring"
+# define MSG_BURNOUT "burned out"
 
 # include <pthread.h>
 
@@ -79,39 +91,32 @@ struct s_simulation
 	pthread_cond_t	wait_condition;
 };
 
-
-int		parse_arguments(int argc, char **argv, t_config *config);
+int			parse_arguments(int argc, char **argv, t_config *config);
 long long	get_time_ms(void);
-int		init_sync(t_simulation *simulation);
-void	destroy_sync(t_simulation *simulation);
-int		init_simulation(t_simulation *simulation, t_config *config);
-void	destroy_simulation(t_simulation *simulation);
-int		request_has_priority(const t_request *first,
-		const t_request *second, t_scheduler scheduler);
-int		heap_push(t_heap *heap, t_request request, t_scheduler scheduler);
+int			init_sync(t_simulation *simulation);
+void		destroy_sync(t_simulation *simulation);
+int			init_simulation(t_simulation *simulation, t_config *config);
+void		destroy_simulation(t_simulation *simulation);
+int			heap_push(t_heap *heap, t_request request,
+				t_scheduler scheduler);
 t_request	*heap_peek(t_heap *heap);
 int			heap_pop(t_heap *heap);
-void	create_request(t_coder *coder, t_request *request);
-int		enqueue_request(t_coder *coder, t_request request);
-void	lock_dongles(t_dongle *left, t_dongle *right);
-void	unlock_dongles(t_dongle *left, t_dongle *right);
-int		request_is_top(t_heap *heap, t_request request);
-int		request_can_acquire(t_coder *coder, t_request request);
-int		wait_for_dongles(t_coder *coder, t_request request);
-int		simulation_is_stopped(t_simulation *simulation);
-void	stop_simulation(t_simulation *simulation);
-int		try_acquire_dongles_locked(t_coder *coder,
-			t_request request, long long *cooldown);
-void	release_dongles(t_coder *coder);
-void	log_state(t_coder *coder, const char *message);
-int		sleep_ms(t_simulation *simulation, int duration);
-void	*coder_routine(void *argument);
-int		wait_for_start(t_simulation *simulation);
-void	begin_simulation(t_simulation *simulation);
-int		create_coder_threads(t_simulation *simulation);
-void	join_coder_threads(t_simulation *simulation);
-void	*monitor_routine(void *argument);
-int		run_simulation(t_simulation *simulation);
-int		coder_has_finished(t_coder *coder);
+void		create_request(t_coder *coder, t_request *request);
+int			enqueue_request(t_coder *coder, t_request request);
+void		lock_dongles(t_dongle *left, t_dongle *right);
+void		unlock_dongles(t_dongle *left, t_dongle *right);
+int			wait_for_dongles(t_coder *coder, t_request request);
+int			simulation_is_stopped(t_simulation *simulation);
+void		stop_simulation(t_simulation *simulation);
+int			try_acquire_dongles_locked(t_coder *coder,
+				t_request request, long long *cooldown);
+void		release_dongles(t_coder *coder);
+void		log_state(t_coder *coder, const char *message);
+int			sleep_ms(t_simulation *simulation, int duration);
+void		*coder_routine(void *argument);
+int			wait_for_start(t_simulation *simulation);
+void		*monitor_routine(void *argument);
+int			run_simulation(t_simulation *simulation);
+int			coder_has_finished(t_coder *coder);
 
 #endif
